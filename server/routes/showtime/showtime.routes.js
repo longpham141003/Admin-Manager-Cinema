@@ -4,7 +4,6 @@ import { auth, authorize } from '../../middlewares/auth.js';
 
 const router = express.Router();
 
-// Routes cho showtimes
 router.get('/theaters/:id/showtimes', getShowtimesByTheater);
 router.get('/movies/:id/showtimes', getShowtimesByMovie);
 router.post('/', auth, authorize('admin'), addShowtime);
