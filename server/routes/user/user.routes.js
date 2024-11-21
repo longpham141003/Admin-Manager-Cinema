@@ -13,8 +13,8 @@ router.get('/all', auth, authorize('admin'), getAllUsers);
 router.get('/infor', auth, getCurrentUser);
 router.get('/:id', auth, authorize(['admin', 'user']), getUserById);
 router.delete('/:id', auth, authorize('admin'), deleteUser);
-router.put('/update-info', auth, updateUserInfo); // Người dùng có thể cập nhật thông tin mà không cần token
-router.put('/:id', auth, authorize('admin'), updateUserInfo); // Cho admin
+router.put('/update-info', auth, updateUserInfo); 
+router.put('/:id', auth, authorize('admin'), updateUserInfo);
 
 router.post('/create', auth, authorize('admin'), createUser);
 
