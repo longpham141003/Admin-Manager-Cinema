@@ -16,7 +16,7 @@ const MovieSchema = new Schema({
         type: String
     },
     actors: {
-        type: [String] // Mảng tên diễn viên
+        type: [String] 
     },
     director: {
         type: String
@@ -43,11 +43,11 @@ const MovieSchema = new Schema({
         type: String
     },
     showtimes: [{
-        type: String // Giả sử là mảng các chuỗi đại diện cho giờ chiếu
+        type: String 
     }],
     status: {
         type: String,
-        enum: ['Đang chiếu', 'Sắp chiếu'], // Giới hạn trạng thái phim
+        enum: ['Đang chiếu', 'Sắp chiếu'], 
         required: true
     }
 }, {
