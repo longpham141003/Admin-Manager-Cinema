@@ -1,42 +1,36 @@
 import Seat from '../../models/seat/seat.model.js';
 import SeatType from '../../models/seat/seatType.model.js';
 
-// Tạo ghế
 const createSeats = async (req, res) => {
     try {
-        const seatTypes = await SeatType.find(); // Lấy tất cả loại ghế
-        const totalRows = req.body.rows; // Số hàng
-        const totalColumns = req.body.columns; // Số cột
+        const seatTypes = await SeatType.find(); 
+        const totalRows = req.body.rows; 
+        const totalColumns = req.body.columns; 
         
-        const seats = []; // Mảng chứa ghế
+        const seats = []; 
 
-        // Kiểm tra xem có đủ loại ghế không
         if (seatTypes.length < 3) {
             return res.status(400).json({ error: 'Cần có ít nhất 3 loại ghế để tạo.' });
         }
 
-        // Tạo ghế với từng loại ghế
         for (let row = 1; row <= totalRows; row++) {
             for (let column = 1; column <= totalColumns; column++) {
                 const seatNumber = String.fromCharCode(64 + row) + column; // "A1", "A2",...
 
                 let seatTypeId;
 
-                // Ghế VIP từ C3 đến C8 và D3 đến D8
                 if ((row === 3 && column >= 3 && column <= 8) || (row === 4 && column >= 3 && column <= 8)) {
                     seatTypeId = seatTypes[1]._id; // Ghế VIP
                 } 
-                // Ghế đôi ở hàng cuối (hàng cuối sẽ là hàng F)
                 else if (row === totalRows) {
                     if (column % 2 === 1 && column <= 10) {
                         seatTypeId = seatTypes[2]._id; // Ghế đôi
                     } else {
-                        continue; // Bỏ qua các cột chẵn
+                        continue; 
                     }
                 } 
-                // Ghế thường
                 else {
-                    seatTypeId = seatTypes[0]._id; // Ghế thường
+                    seatTypeId = seatTypes[0]._id; 
                 }
 
                 seats.push({ seatNumber, seatType: seatTypeId, status: 'available' });
@@ -50,7 +44,6 @@ const createSeats = async (req, res) => {
     }
 };
 
-// Cập nhật trạng thái ghế
 const updateSeatStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
@@ -66,7 +59,6 @@ const updateSeatStatus = async (req, res) => {
     }
 };
 
-// Lấy tất cả ghế với loại ghế (populate SeatType)
 const getAllSeats = async (req, res) => {
     try {
         const seats = await Seat.find().populate('seatType'); // Lấy thông tin loại ghế
@@ -76,7 +68,6 @@ const getAllSeats = async (req, res) => {
     }
 };
 
-// Lấy ghế theo ID
 const getSeatById = async (req, res) => {
     const { id } = req.params;
 
@@ -91,7 +82,6 @@ const getSeatById = async (req, res) => {
     }
 };
 
-// Xóa tất cả ghế
 const deleteAllSeats = async (req, res) => {
     try {
         await Seat.deleteMany({});
