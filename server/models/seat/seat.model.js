@@ -7,7 +7,7 @@ const SeatSchema = new Schema({
         type: String, 
         required: true, 
         unique: true 
-    }, // Số ghế duy nhất (A1, B2, ...)
+    }, 
     seatType: {
         type: Schema.Types.ObjectId, 
         ref: 'SeatType', 
@@ -17,7 +17,7 @@ const SeatSchema = new Schema({
         type: String, 
         enum: ['available', 'booked'], 
         default: 'available' 
-    }  // Trạng thái của ghế: available hoặc booked
+    }  
 });
 
 const Seat = mongoose.model('Seat', SeatSchema);
