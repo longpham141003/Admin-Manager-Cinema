@@ -2,7 +2,6 @@ import Showtime from '../../models/showtime/showtime.model.js';
 import Movie from '../../models/movie/movie.model.js'; 
 import Theater from '../../models/theater/theater.model.js';
 
-// 3.1. Lấy Lịch Chiếu Theo Rạp
 const getShowtimesByTheater = async (req, res) => {
     const { id } = req.params;
     try {
@@ -13,7 +12,6 @@ const getShowtimesByTheater = async (req, res) => {
     }
 };
 
-// 3.2. Lấy Lịch Chiếu Theo Phim
 const getShowtimesByMovie = async (req, res) => {
     const { id } = req.params;
     try {
@@ -24,7 +22,6 @@ const getShowtimesByMovie = async (req, res) => {
     }
 };
 
-// 3.3. Thêm Lịch Chiếu Mới
 const addShowtime = async (req, res) => {
     const { movieId, theaterId, showtime, room } = req.body;
     const newShowtime = new Showtime({ movieId, theaterId, showtime, room });
@@ -37,7 +34,6 @@ const addShowtime = async (req, res) => {
     }
 };
 
-// 3.4. Cập Nhật Lịch Chiếu
 const updateShowtime = async (req, res) => {
     const { id } = req.params;
     const { room, showtime } = req.body;
@@ -71,7 +67,6 @@ const deleteAllShowtimes = async (req, res) => {
     }
 };
 
-// 3.5. Xóa Lịch Chiếu
 const deleteShowtime = async (req, res) => {
     const { id } = req.params;
 
