@@ -1,7 +1,5 @@
-// controllers/theater/theater.controller.js
 import Theater from '../../models/theater/theater.model.js';
 
-// 1. Lấy danh sách rạp
 const getTheaters = async (req, res) => {
     try {
         const theaters = await Theater.find();
@@ -11,10 +9,9 @@ const getTheaters = async (req, res) => {
     }
 };
 
-// 2. Xóa tất cả các rạp (chỉ cho admin)
 const deleteAllTheaters = async (req, res) => {
     try {
-        const result = await Theater.deleteMany(); // Xóa tất cả các rạp
+        const result = await Theater.deleteMany(); 
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: 'Không có rạp nào để xóa' });
         }
@@ -24,7 +21,6 @@ const deleteAllTheaters = async (req, res) => {
     }
 };
 
-// 3. Lấy chi tiết rạp
 const getTheaterById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -38,23 +34,18 @@ const getTheaterById = async (req, res) => {
     }
 };
 
-// 4. Thêm rạp mới
 const addTheater = async (req, res) => {
     const { name, location, totalRooms, openingHours } = req.body;
 
-    // Kiểm tra dữ liệu đầu vào
     if (!name || !location || !totalRooms || !openingHours) {
         return res.status(400).json({ message: 'Vui lòng cung cấp đầy đủ thông tin rạp' });
     }
 
     try {
-        // Lấy danh sách tất cả các rạp để xác định mã theaterId
         const theaters = await Theater.find();
 
-        // Tạo mã theaterId mới dựa trên số lượng rạp hiện có
         const theaterId = `R${String(theaters.length + 1).padStart(3, '0')}`;
 
-        // Tạo một rạp mới với mã theaterId tự động
         const newTheater = new Theater({
             theaterId,
             name,
@@ -63,10 +54,8 @@ const addTheater = async (req, res) => {
             openingHours
         });
 
-        // Lưu rạp mới vào cơ sở dữ liệu
         await newTheater.save();
 
-        // Trả về phản hồi thành công
         res.status(201).json({ message: 'Rạp mới đã được tạo thành công', theater: newTheater });
     } catch (error) {
         console.error('Error while adding theater:', error);
@@ -74,7 +63,6 @@ const addTheater = async (req, res) => {
     }
 };
 
-// 5. Cập nhật thông tin rạp
 const updateTheater = async (req, res) => {
     const { id } = req.params;
     const { name, address, phone } = req.body;
@@ -96,7 +84,6 @@ const updateTheater = async (req, res) => {
     }
 };
 
-// 6. Xóa rạp
 const deleteTheater = async (req, res) => {
     const { id } = req.params;
 
@@ -112,7 +99,6 @@ const deleteTheater = async (req, res) => {
     }
 };
 
-// Xuất các controller
 export {
     getTheaters,
     getTheaterById,
