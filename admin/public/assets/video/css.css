@@ -1,0 +1,485 @@
+/* Toàn bộ body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a; /* Nền tối */
+  color: #ffffff; /* Màu chữ trắng */
+  margin: 0;
+  padding: 0;
+  /* font-family: Arial, sans-serif;
+  background-image: url('path/to/your/snapedit_1725900959921.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  color: #ffffff;
+  margin: 0;
+  background-size: contain; 
+  padding: 0; */
+}
+
+/* Header và Footer */
+.header, .footer {
+  background-color: #000000; /* Nền đen cho cảm giác điện ảnh */
+  color: #ffffff;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+/* Video Banner */
+.video-banner {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  
+}
+
+.video-banner video {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  
+}
+
+.video-banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.447); /* Màu đen với độ mờ 50% */
+  z-index: 1; /* Đảm bảo lớp phủ nằm trên video */
+}
+.video-banner .overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #ffffff;
+  z-index: 2; /* Đảm bảo nội dung lớp phủ nằm trên lớp phủ */
+}
+.video-banner h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.video-banner p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.video-banner .btn {
+  font-size: 1.2rem;
+  background-color: #ff0000; /* Đỏ */
+  color: #ffffff; /* Chữ trắng */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.video-banner .btn:hover {
+  background-color: #cc0000; /* Đỏ đậm khi hover */
+}
+
+/* Đặt Vé Nhanh */
+.card {
+  background-color: #1e1e1e; /* Nền tối */
+  border: none;
+  margin-top:-100px ;
+  z-index: 3;
+  height: 80px;
+}
+
+.card-title {
+  font-size: 2rem; /* Kích thước tiêu đề */
+}
+
+.form-label {
+  color: #ffffff; /* Màu chữ trắng cho các nhãn */
+}
+
+.form-select {
+  background-color: #333; /* Nền tối cho select */
+  color: #ffffff; /* Chữ trắng cho select */
+  border: 1px solid #444; /* Viền tối hơn */
+  border-radius: 5px;
+  font-size: 0.875rem; /* Kích thước chữ nhỏ hơn */
+  padding: 5px;
+}
+
+.form-select:focus {
+  border-color: #ff0000; /* Đỏ khi focus */
+  background-color: #333; /* Nền tối khi focus */
+}
+
+.btn-danger {
+  background-color: #ff0000; /* Đỏ */
+  color: #ffffff; /* Chữ trắng */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem; /* Kích thước chữ nhỏ hơn */
+  transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+  background-color: #cc0000; /* Đỏ đậm khi hover */
+}
+
+/* Đặt kích thước tối đa cho các phần tử select và button */
+.form-select, .btn-danger {
+  max-width: 100%; /* Đảm bảo không bị kéo dài quá mức */
+}
+
+/* Flexbox để hiển thị các phần tử trên cùng một dòng */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.text-center {
+  text-align: center;
+}
+/* Đảm bảo các phần tử trong form nằm trên cùng một dòng và có kích thước đồng đều */
+.d-flex {
+  display: flex;
+  align-items: stretch; /* Đảm bảo các phần tử chiếm toàn bộ chiều cao của container */
+  flex-wrap: wrap; /* Cho phép phần tử wrap xuống dòng nếu không đủ không gian */
+}
+
+.form-group {
+  flex: 1 1 22%; /* Tạo không gian đồng đều cho các phần tử, và cho phép chúng co giãn nếu cần */
+  margin: 0 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.form-select, .btn-select {
+  width: 100%; /* Đảm bảo các phần tử chiếm toàn bộ chiều rộng của container */
+  font-size: 14px; /* Giảm kích thước chữ cho các phần tử */
+}
+
+.btn-select {
+  margin-top: 0; /* Đảm bảo nút không bị dính vào các phần tử bên trên */
+  padding: 10px; /* Điều chỉnh kích thước padding của nút */
+}
+
+/* Điều chỉnh cho màn hình nhỏ hơn */
+@media (max-width: 767px) {
+  .d-flex {
+      flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc trên màn hình nhỏ */
+      align-items: stretch; /* Đảm bảo các phần tử kéo dài toàn bộ chiều rộng */
+  }
+  .form-group {
+      margin-bottom: 15px; /* Khoảng cách giữa các phần tử trên màn hình nhỏ */
+  }
+}
+
+/* Slider */
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+    justify-content: space-between;
+}
+
+.slider-items {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+#prev-showing, #next-showing,
+#prev-upcoming, #next-upcoming {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1; /* Đảm bảo nút nằm trên slider */
+}
+#prev-showing, #prev-upcoming {
+  left: 0;
+}
+
+#next-showing, #next-upcoming {
+  right: 0;
+}
+.slider-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+#prev-featured {
+  left: 0;
+}
+
+#next-featured {
+  right: 0;
+}
+.slider-content {
+  flex-grow: 1;
+  overflow: hidden;
+}
+.slider-item {
+  flex: 0 0 25%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.movie-card {
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 8px;
+  position: relative;
+}
+.movie-card .btn {
+  background-color: #ff0000; /* Đỏ */
+  color: #ffffff; /* Chữ trắng */
+}
+.movie-card .btn:hover {
+  background-color: #cc0000; /* Đỏ đậm khi hover */
+}
+
+.movie-img {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 0 0 8px 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+.movie-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #eeee27;
+}
+
+.movie-time {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Slider Navigation */
+.slider-nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.slider-nav button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.slider-nav button:hover {
+  background-color: #333;
+}
+
+/* Tabs */
+.nav-tabs .nav-item .nav-link.active {
+  background-color: #eeee27;
+  color: #231e1e;
+}
+.nav-item .nav-link{
+  color: #fff;
+}
+
+/* Box Features */
+.feature-box {
+  text-align: center;
+  padding: 30px 20px;
+  color: #ffffff; /* Màu chữ trắng */
+  border-radius: 15px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* Icon styling */
+.feature-icon i {
+  font-size: 3rem;
+  color: #975c21; /* Icon màu vàng để nổi bật */
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for icon */
+.feature-box:hover .feature-icon i {
+  color: #ff3333; /* Đổi màu icon khi hover */
+}
+
+/* Title styling */
+.feature-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+/* Description styling */
+.feature-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cccccc; /* Màu chữ xám nhạt */
+}
+
+/* Flexbox to ensure equal height columns */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-lg-3, .col-md-6 {
+  display: flex;
+}
+
+#promotionCarousel {
+  width: 100vw; /* Chiếm toàn bộ chiều rộng của màn hình */
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto; /* Canh giữa slider */
+}
+
+.carousel-inner {
+  width: 100%;
+  height: auto; /* Tự động điều chỉnh chiều cao */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto; /* Đảm bảo ảnh không bị kéo giãn */
+}
+
+
+/* Tin Tức và Sự Kiện */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #f6ca1c;
+}
+
+.news-event-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-event-main img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.news-event-info {
+  padding: 15px;
+}
+
+.news-event-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.news-event-details {
+  margin-bottom: 15px;
+}
+
+/* News and Event List */
+.news-event-list {
+  margin-bottom: 20px;
+}
+
+.news-event-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-event-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.news-event-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.news-event-info {
+  flex: 1;
+}
+
+.news-event-title {
+  font-size: 1.125rem;
+}
+
+.news-event-details {
+  font-size: 0.875rem;
+}
+
+/* Sắp Chiếu, Đang Chiếu, Hiện Đang Thịnh Hành, Đặt Vé */
+.upcoming-movies, .now-showing, .trending-movies, .book-tickets {
+  background-color: #333333; /* Nền xám đậm cho các phần danh sách phim */
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.upcoming-movies h2, .now-showing h2, .trending-movies h2, .book-tickets h2 {
+  font-size: 1.75rem;
+  margin-bottom: 15px;
+}
+
+.book-tickets {
+  background-color: #4a4a4a; /* Nền xám nhạt hơn cho phần đặt vé */
+  border: 1px solid #666;
+}
+
+/* Đặt Vé */
+.book-ticket-btn {
+  background-color: #ff0000; /* Đỏ */
+  color: #ffffff; /* Chữ trắng */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.book-ticket-btn:hover {
+  background-color: #cc0000; /* Đỏ đậm khi hover */
+}
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+}

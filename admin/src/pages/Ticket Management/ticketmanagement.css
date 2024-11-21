@@ -1,0 +1,230 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.admin {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+.left-bar {
+  background-color: #0a2342;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.left-bar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.left-bar::-webkit-scrollbar-track {
+  background: #001c40;
+}
+
+.left-bar::-webkit-scrollbar-thumb {
+  background-color: #212529;
+  border-radius: 10px;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-info img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  background-color: white;
+}
+
+.user-info h4 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background-color: #34568b;
+}
+
+.menu-item i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.menu-item.active {
+  background-color: #ffd700;
+  color: black;
+}
+
+.right-bar {
+  padding: 0;
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-bar:hover {
+  overflow-y: scroll;
+}
+
+.header-right-bar {
+  background-color: #0a2342;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.website-link {
+  color: #ffffff;
+  font-size: 13px;
+  margin-left: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logout-button {
+  background-color: #ffd700;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.logout-button i {
+  font-size: 18px;
+  color: #0a2342;
+}
+
+.content {
+  margin: 6px 20px;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.time .title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #002855;
+  position: relative;
+}
+
+.time .title::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 5px;
+  background-color: #ffd700;
+  border-radius: 0 5px 5px 0;
+}
+
+.time .datetime {
+  font-size: 14px;
+  color: #333333;
+}
+
+.main-content {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.horizontal-line {
+  border-top: 2px solid #ddd;
+  margin: 20px 0;
+}
+
+.data-content {
+  overflow-x: auto; /* Thêm khả năng cuộn ngang cho bảng */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: -6px;
+  width: 100%;
+}
+table tbody td {
+  padding: 7px 0;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 14px;
+}
+
+
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* CSS cho phần nổi bật cả cha và chi tiết trong cùng 1 khung */
+.selected-row,
+.combined-details {
+  background-color: #e6f0ff;
+}
+
+.combined-details {
+  border-radius: 5px;
+}
+

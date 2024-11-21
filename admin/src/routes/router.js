@@ -1,0 +1,23 @@
+export const ROUTERS = {
+  ADMIN: { 
+    ACCOUNTMANAGEMENT:"/admin/accountmanagement",
+    MOVIEMANAGEMENT:"/admin/moviemanagement",
+    MOVIEDETAIL: "/admin/moviedetail/:movieId",
+    CINEMAMANAGEMENT:"/admin/cinemamanagement",
+    TICKETMANAGEMENT:"/admin/ticketmanagement",
+    PAYMENTMANAGEMENT:"/admin/paymentmanagement",
+    SHOWTIMEMANAGEMENTBYMOVIE:"/admin/showtimemanagementbymovie",
+    SHOWTIMEMANAGEMENTBYTHEATER:"/admin/showtimemanagementbytheater",
+    SNACKMANAGEMENT:"/admin/snackmanagement",
+    DASHBOARD:"/admin/dashboard",
+    EDITACCOUNT: "/admin/editaccount/:userId",
+    ADDACCOUNT:"/admin/addaccount",
+    EDITCINEMA: "/admin/editcinema/:theaterId",
+    ADDCINEMA:"/admin/addcinema",
+    EDITMOVIE:"/admin/editmovie",
+    ADDMOVIE:"/admin/addmovie",
+    ADDSNACK:"/admin/addsnack",
+    EDITSNACK: "/admin/editsnack/:snackId",
+    ADMINLOGIN:"/admin/login",
+  },
+};

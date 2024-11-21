@@ -1,0 +1,427 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.body-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.dashboard-admin {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Cột trái 250px, cột phải chiếm phần còn lại */
+  height: 100vh;
+}
+
+.dashboard-left-bar {
+  background-color: #0a2342;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Cho phép cuộn riêng biệt trong khu vực left-bar */
+}
+.dashboard-left-bar::-webkit-scrollbar {
+  width: 5px; /* Đặt chiều rộng của thanh cuộn nhỏ hơn */
+}
+
+.dashboard-left-bar::-webkit-scrollbar-track {
+  background: #001c40; /* Màu nền của thanh cuộn */
+}
+
+.dashboard-left-bar::-webkit-scrollbar-thumb {
+  background-color: #212529; /* Màu của thanh cuộn */
+  border-radius: 10px; /* Làm cho thanh cuộn tròn góc */
+}
+
+.dashboard-user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-user-info img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  background-color: white;
+}
+
+.dashboard-user-info h4 {
+  margin: 10px 0 5px;
+  font-size: 16px; /* Giảm kích thước chữ tên người dùng */
+}
+
+.dashboard-user-info p {
+  margin: 0;
+  font-size: 12px; /* Giảm kích thước chữ lời chào */
+  color: #ccc;
+}
+
+.dashboard-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px; /* Giảm padding */
+  color: white;
+  text-decoration: none;
+  margin-bottom: 16px; /* Giảm khoảng cách giữa các mục */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-size: 14px; /* Giảm kích thước chữ trong menu */
+}
+
+.dashboard-menu-item:hover {
+  background-color: #34568b;
+}
+
+.dashboard-menu-item i {
+  margin-right: 8px;
+  font-size: 16px; /* Giảm kích thước biểu tượng */
+}
+
+.dashboard-menu-item.active {
+  background-color: #ffd700;
+  color: black;
+}
+
+.dashboard-right-bar {
+  padding: 0;
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-right-bar:hover {
+  overflow-y: scroll; /* Hiển thị thanh cuộn khi di chuột vào right-bar */
+}
+
+.dashboard-header-right-bar {
+  background-color: #0a2342;
+  display: flex;
+  justify-content: space-between; /* Chỉnh nội dung cách xa nhau */
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc; /* Thêm đường viền dưới */
+}
+
+.dashboard-website-link {
+  color: #ffffff;
+  font-size: 13px;
+  margin-left: 20px; /* Đẩy chữ vào trang web sang bên trái */
+  font-weight: bold;
+  text-decoration: none; /* Bỏ dấu gạch chân */
+}
+
+.dashboard-logout-button {
+  background-color: #ffd700;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; /* Đẩy nút logout về bên phải */
+}
+
+.dashboard-logout-button i {
+  font-size: 18px;
+  color: #0a2342;
+}
+
+
+
+
+.dashboard-content{
+  margin: 6px 20px;
+}
+.dashboard-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.dashboard-time .title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #002855;
+  position: relative;
+}
+
+.dashboard-time .title::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 5px;
+  background-color: #ffd700;
+  border-radius: 0 5px 5px 0;
+}
+
+.dashboard-time .datetime {
+  font-size: 14px;
+  color: #333333;
+}
+
+
+
+
+.dashboard-body-content{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  column-gap: 30px;
+}
+.dashboard-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.dashboard-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  align-items: center;
+}
+
+.dashboard-item .dashboard-icon {
+  background-color: #e0f7fa;
+  border-radius: 50%;
+  padding: 20px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.dashboard-item1 .dashboard-icon {
+  background-color: #c8e6c9;
+  color: #388e3c;
+}
+
+.dashboard-item2 .dashboard-icon {
+  background-color: #bbdefb;
+  color: #1976d2;
+}
+
+.dashboard-item3 .dashboard-icon {
+  background-color: #ffe0b2;
+  color: #f57c00;
+}
+
+.dashboard-item4 .dashboard-icon {
+  background-color: #ffcdd2;
+  color: #d32f2f;
+}
+
+.dashboard-details h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.dashboard-details p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dashboard-details small {
+  color: #777;
+  font-size: 12px;
+}
+.dashboard-new-order {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.dashboard-new-order h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  color: #333;
+  border-left: 4px solid #ffd700;
+  padding-left: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead th {
+  background-color: #f9f9f9;
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 14px;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dashboard-id-column {
+  width: 15%; /* Đặt cột ID ngắn hơn */
+}
+
+.dashboard-name-column {
+  width: 35%; /* Đặt cột tên khách hàng dài hơn */
+}
+
+.dashboard-amount-column {
+  width: 25%; /* Đặt cột tổng tiền dài hơn */
+}
+
+.dashboard-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  display: inline-block;
+}
+
+.dashboard-status.pending {
+  background-color: #b39ddb;
+  color: #673ab7;
+}
+
+.dashboard-status.shipping {
+  background-color: #fff59d;
+  color: #fbc02d;
+}
+
+.dashboard-status.completed {
+  background-color: #a5d6a7;
+  color: #388e3c;
+}
+
+.dashboard-status.canceled {
+  background-color: #ef9a9a;
+  color: #d32f2f;
+}
+
+.dashboard-new-customer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.dashboard-new-customer h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  color: #333;
+  border-left: 4px solid #ffd700;
+  padding-left: 10px;
+}
+
+.dashboard-new-customer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-new-customer table thead th {
+  background-color: #f9f9f9;
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-new-customer table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 14px;
+}
+
+.dashboard-new-customer table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dashboard-new-customer .id-column {
+  width: 10%; /* Cột ID ngắn hơn */
+}
+
+.dashboard-new-customer .name-column {
+  width: 40%; /* Cột tên khách hàng dài hơn */
+}
+
+.dashboard-new-customer .birthdate-column {
+  width: 25%; /* Cột ngày sinh dài hơn */
+}
+
+.dashboard-new-customer .phone-column {
+  width: 25%; /* Cột số điện thoại dài hơn */
+}
+
+
+.dashboard-right-data h2 {
+  font-size: 20px;
+  color: #333;
+  border-left: 4px solid #ffd700; /* Đường viền màu vàng ở bên trái */
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.dashboard-right-data {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+}
+
+#dashboard-myChart {
+  width: 100%;
+  max-height: 400px;
+}
+.dashboard-right-revenue h2 {
+  font-size: 20px;
+  color: #333;
+  border-left: 4px solid #ffd700; /* Đường viền màu vàng ở bên trái */
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.dashboard-right-revenue {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  margin-top: 40px;
+}
+
+#dashboard-revenueChart {
+  width: 100%;
+  max-height: 400px;
+}
