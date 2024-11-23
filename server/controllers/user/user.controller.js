@@ -12,6 +12,7 @@ export const register = async (req, res) => {
         let userCode;
         let count = 1;
     
+        //không nên có những code như này, vừa chậm, vừa không logic
         while (count <= 9999) { 
             userCode = `TK${count.toString().padStart(4, '0')}`;
             const existingUser = await User.findOne({ userCode });
@@ -57,6 +58,7 @@ export const register = async (req, res) => {
 export const createUser = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
+    //không được có những code trùng lặp
     const generateUserCode = async () => {
         let userCode;
         let count = 1;
@@ -121,6 +123,7 @@ export const login = async (req, res) => {
         user.lastLogin = new Date();
         await user.save();
 
+        //Key, expire time cần thay đổi và đưa ra file config
         const token = jwt.sign({ userId: user._id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
         res.status(200).json({ token, userInfo: { username: user.username, hoTen: user.hoTen, email: user.email, soDienThoai: user.soDienThoai, role: user.role } });
     } catch (error) {

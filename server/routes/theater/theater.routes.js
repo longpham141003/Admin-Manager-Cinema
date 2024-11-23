@@ -5,6 +5,7 @@ import { auth, authorize } from '../../middlewares/auth.js';
 const router = express.Router();
 
 router.delete('/all', auth, authorize('admin'), deleteAllTheaters); 
+//tại sao không cần auth?
 router.get('/', getTheaters);
 router.get('/:id', getTheaterById);
 router.post('/', auth, authorize('admin'), addTheater);

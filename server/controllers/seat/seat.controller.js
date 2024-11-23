@@ -9,6 +9,7 @@ const createSeats = async (req, res) => {
         
         const seats = []; 
 
+        //cần đưa ra file config
         if (seatTypes.length < 3) {
             return res.status(400).json({ error: 'Cần có ít nhất 3 loại ghế để tạo.' });
         }
@@ -18,7 +19,7 @@ const createSeats = async (req, res) => {
                 const seatNumber = String.fromCharCode(64 + row) + column; // "A1", "A2",...
 
                 let seatTypeId;
-
+                //Cần đưa ra file config
                 if ((row === 3 && column >= 3 && column <= 8) || (row === 4 && column >= 3 && column <= 8)) {
                     seatTypeId = seatTypes[1]._id; // Ghế VIP
                 } 
