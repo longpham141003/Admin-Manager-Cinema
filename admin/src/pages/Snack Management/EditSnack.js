@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEditSnack } from '../../hooks/snack/useEditSnack'; // Đảm bảo đường dẫn chính xác
-import './snackmanagement.css'; // Sử dụng lại CSS từ trang quản lý snack
+import { useEditSnack } from '../../hooks/snack/useEditSnack'; 
+import './snackmanagement.css'; 
 
 const EditSnack = () => {
-    const { snackId } = useParams(); // Lấy snackId từ URL
+    const { snackId } = useParams(); 
     console.log("Snack ID từ URL:", snackId);
 
     // Sử dụng hook để lấy dữ liệu snack
@@ -18,7 +18,6 @@ const EditSnack = () => {
 
     const navigate = useNavigate();
 
-    // Hàm xử lý thay đổi giá trị trong các input
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -38,21 +37,19 @@ const EditSnack = () => {
         }
     };
 
-    // Hàm xử lý khi form được submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const success = await editSnack(); // Gọi editSnack từ hook
+        const success = await editSnack();
          console.log("Kết quả chỉnh sửa snack:", success);
         if (success) {
             alert("Cập nhật snack thành công!");
-            navigate('/admin/snackmanagement'); // Quay lại trang quản lý snack nếu thành công
+            navigate('/admin/snackmanagement'); 
         } else {
             alert("Cập nhật snack thất bại!");
         }
     };
 
-    // Hiển thị thông báo nếu đang tải hoặc có lỗi
     if (loading) return <p>Đang tải thông tin snack...</p>;
     if (errorMessage) return <p className="error-message">{errorMessage}</p>;
 
