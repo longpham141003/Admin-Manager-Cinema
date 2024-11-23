@@ -3,7 +3,7 @@ import { getShowtimesByTheater, getShowtimesByMovie, addShowtime, updateShowtime
 import { auth, authorize } from '../../middlewares/auth.js';
 
 const router = express.Router();
-
+//tại sao không cần auth?
 router.get('/theaters/:id/showtimes', getShowtimesByTheater);
 router.get('/movies/:id/showtimes', getShowtimesByMovie);
 router.post('/', auth, authorize('admin'), addShowtime);

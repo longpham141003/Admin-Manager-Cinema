@@ -1,0 +1,2 @@
+- Tách riêng web và api
+- Không đưa lên git thư mục uploads

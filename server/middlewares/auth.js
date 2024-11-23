@@ -5,6 +5,7 @@ const auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
+        //Đoạn code này không đúng
         if (req.method === 'PUT' && req.path === '/api/users/update-info') {
             return next();
         }
@@ -13,6 +14,7 @@ const auth = async (req, res, next) => {
             return res.status(401).json({ message: 'Vui lòng đăng nhập.' });
         }
 
+        //Cần lấy secret key từ config
         const decoded = jwt.verify(token, 'your_jwt_secret');
         if (!decoded || !decoded.userId) {
             return res.status(401).json({ message: 'Token không hợp lệ.' });

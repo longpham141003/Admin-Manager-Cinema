@@ -30,10 +30,12 @@ app.use('/api/bookings', bookingRoute);
 app.use('/api/snacks', snackRoute); 
 
 app.get('/', (req, res) => {
+    //Cần thay bằng message liên quan project
     res.send('Hello from Node API Server Updated');
 });
 
 // Kết nối MongoDB
+//Cần lưu ra file config
 mongoose.connect('mongodb+srv://longpham141003:Q.long2003@cluster0.wnvq1lm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => {
         console.log('Đã kết nối tới Database');

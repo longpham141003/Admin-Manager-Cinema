@@ -26,6 +26,7 @@ router.put('/:id', auth, authorize('admin'), upload.fields([
     { name: 'trailer', maxCount: 1 }
 ]), updateMovie);
 
+//tại sao không cần auth?
 router.get('/', getAllMovies);
 router.get('/:id', getMovieById);
 router.get('/:id/showtimes', getShowtimesByMovieId);

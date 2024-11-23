@@ -4,7 +4,7 @@ import { auth, authorize } from '../../middlewares/auth.js';
 import upload from '../../middlewares/upload.js';
 
 const router = express.Router();
-
+//tại sao không cần auth?
 router.post('/', upload.single('image'), addSnack);
 router.get('/', getAllSnacks);
 router.get('/:id', getSnackById);
