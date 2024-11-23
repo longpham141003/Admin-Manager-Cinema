@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = () => {
         setIsAuthenticated(true);
+        //expire time được lấy từ access token thay vì hard code phía client
         const expiryTime = new Date().getTime() + 30 * 60 * 1000; 
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('expiryTime', expiryTime);

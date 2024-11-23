@@ -1,2 +1,6 @@
 - Tách riêng web và api
 - Không đưa lên git thư mục uploads
+- Cần validate phía backend để tránh by pass (dựa vào mongoose không đủ)
+Tham khảo Joi hoặc Express-validator
+- Thêm log ở những chỗ quan trọng
+- Nên sử dụng pm2 để chạy app
