@@ -4,8 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import ActionToolbar from '../../components/ActionToolbar';
 import Pagination from '../../components/Panigation';
-import { useUsers } from '../../hooks'; // Đảm bảo bạn đã có hook này
-import useDeleteUser from '../../hooks/user/useDeleteUser'; // Nhập hook xóa người dùng
+import { useUsers } from '../../hooks'; 
+import useDeleteUser from '../../hooks/user/useDeleteUser';
 import './accountmanagement.css';
 
 const AccountManagement = () => {
