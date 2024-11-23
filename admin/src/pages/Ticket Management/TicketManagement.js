@@ -3,7 +3,7 @@ import "./ticketmanagement.css";
 import Button from "../../components/button";
 import ActionToolbar from '../../components/ActionToolbar';
 import Panigation from "../../components/Panigation";
-import TicketDetails from './TicketDetails'; // Chỉnh sửa tên component ở đây
+import TicketDetails from './TicketDetails';
 const tickets = [
     {
         id: 1,
