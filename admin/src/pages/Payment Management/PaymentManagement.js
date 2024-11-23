@@ -1,5 +1,5 @@
 import React from 'react';
-import "./paymentmanagement.css"; // Đảm bảo có file CSS tương ứng
+import "./paymentmanagement.css"; 
 import Button from "../../components/button";
 import ActionToolbar from '../../components/ActionToolbar';
 import Panigation from "../../components/Panigation";
