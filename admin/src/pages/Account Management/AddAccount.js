@@ -24,10 +24,10 @@ const AddAccount = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault(); 
-        const success = await addUser(); // Gọi hàm thêm người dùng
+        const success = await addUser(); 
 
         if (success) {
-            navigate('/admin/accountmanagement'); // Điều hướng về trang quản lý tài khoản sau khi thêm thành công
+            navigate('/admin/accountmanagement'); 
         }
     };
 
