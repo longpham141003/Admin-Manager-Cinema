@@ -1,35 +1,32 @@
-// src/components/AdminLogin/AdminLogin.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Nhập useNavigate
-import { loginUser } from '../../services/authService'; // Nhập hàm loginUser
-import { useAuth } from '../../hooks/useAuth '; // Nhập useAuth từ hooks (đã xóa dấu cách thừa)
-import './AdminLogin.css'; // Nhập tệp CSS
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../services/authService'; 
+import { useAuth } from '../../hooks/useAuth '; 
+import './AdminLogin.css'; 
 
 const AdminLogin = () => {
-    const { login } = useAuth(); // Lấy hàm login từ AuthContext
-    const [username, setUsername] = useState(''); // Đổi từ email sang username
+    const { login } = useAuth(); 
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); // Quản lý thông báo lỗi
-    const [loading, setLoading] = useState(false); // Quản lý trạng thái tải
-    const navigate = useNavigate(); // Tạo hook điều hướng
+    const [error, setError] = useState(''); 
+    const [loading, setLoading] = useState(false); 
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
         setError('');
 
-        console.log('Gửi yêu cầu đăng nhập với thông tin:', { username, password }); // Log thông tin đăng nhập
+        console.log('Gửi yêu cầu đăng nhập với thông tin:', { username, password }); 
         try {
-            const data = await loginUser({ username, password }); // Gọi hàm loginUser
+            const data = await loginUser({ username, password }); 
             console.log('Đăng nhập thành công:', data);
 
-            // Lưu token vào localStorage
-            localStorage.setItem('token', data.token); // Giả định rằng token có trong phản hồi
+            localStorage.setItem('token', data.token); 
 
-            login(); // Chỉ cần gọi login() mà không cần truyền dữ liệu
-            navigate('/admin/dashboard'); // Điều hướng đến Dashboard
+            login();
+            navigate('/admin/dashboard'); 
         } catch (err) {
-            // Cung cấp thông báo lỗi chi tiết hơn nếu có
             const errorMessage = err.response?.data?.message || 'Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.';
             setError(errorMessage);
             console.error(err);
@@ -41,7 +38,7 @@ const AdminLogin = () => {
     return (
         <div className="container">
             <h2>Đăng Nhập</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Hiển thị thông báo lỗi */}
+            {error && <p style={{ color: 'red' }}>{error}</p>} 
             <form onSubmit={handleSubmit} className="form">
                 <div className="formGroup">
                     <label htmlFor="username">Username:</label>
