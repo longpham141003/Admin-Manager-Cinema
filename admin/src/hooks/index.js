@@ -1,1 +1,0 @@
-export { default as useUsers } from '../hooks/user/useUsers';
