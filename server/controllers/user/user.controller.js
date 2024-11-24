@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import User from '../../models/user/user.model.js'; 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import config from '../../config.js';
 
 const generateUserCode = async () => {
     try {
