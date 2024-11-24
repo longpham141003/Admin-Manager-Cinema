@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import userRoute from './routes/user/user.routes.js';
 import movieRoute from './routes/movie/movie.routes.js';
 import theaterRoute from './routes/theater/theater.routes.js'; 
@@ -11,7 +10,6 @@ import seatTypeRoutes from './routes/seat/seatType.routes.js';
 import showtimeRoute from './routes/showtime/showtime.routes.js';
 import snackRoute from './routes/snack/snack.routes.js';
 
-dotenv.config(); 
 
 const app = express();
 

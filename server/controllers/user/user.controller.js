@@ -94,7 +94,12 @@ export const login = async (req, res) => {
         user.lastLogin = new Date();
         await user.save();
 
-        const token = jwt.sign({ userId: user._id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
+        //đã tách jwt_secret và  expire time
+        const token = jwt.sign(
+            { userId: user._id, role: user.role },
+            config.JWT_SECRET,  
+            { expiresIn: config.JWT_EXPIRE_TIME }  
+        );
         res.status(200).json({ token, userInfo: { username: user.username, hoTen: user.hoTen, email: user.email, soDienThoai: user.soDienThoai, role: user.role } });
     } catch (error) {
         res.status(500).json({ error: error.message });
