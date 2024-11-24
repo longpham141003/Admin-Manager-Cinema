@@ -11,7 +11,7 @@ import seatTypeRoutes from './routes/seat/seatType.routes.js';
 import showtimeRoute from './routes/showtime/showtime.routes.js';
 import snackRoute from './routes/snack/snack.routes.js';
 
-dotenv.config(); // Sử dụng dotenv để đọc file .env
+dotenv.config(); 
 
 const app = express();
 
@@ -28,10 +28,6 @@ app.use('/api/seats', seatRoute);
 app.use('/api/seattypes', seatTypeRoutes);
 app.use('/api/bookings', bookingRoute);
 app.use('/api/snacks', snackRoute); 
-
-app.get('/', (req, res) => {
-    res.send('Hello from Node API Server Updated');
-});
 
 // Kết nối MongoDB
 mongoose.connect('mongodb+srv://longpham141003:Q.long2003@cluster0.wnvq1lm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')

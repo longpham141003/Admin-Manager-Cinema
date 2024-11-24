@@ -1,27 +1,23 @@
-import Movie from '../../models/movie/movie.model.js'; // Thay thế require bằng import
+import Movie from '../../models/movie/movie.model.js';
 
-// 1.1. Lấy Danh Sách Phim
 const getAllMovies = async (req, res) => {
     try {
-        const movies = await Movie.find(); // Lấy tất cả phim
+        const movies = await Movie.find(); 
         res.status(200).json(movies);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// 1.2. Lấy Chi Tiết Phim
 const getMovieById = async (req, res) => {
     const { id } = req.params;
     try {
-        // Tìm phim theo ID
         const movie = await Movie.findById(id);
         
         if (!movie) {
             return res.status(404).json({ message: 'Movie not found' });
         }
 
-        // Kiểm tra và tạo đường dẫn URL cho poster, image, trailer nếu có
         if (movie.poster) {
             movie.poster = `${req.protocol}://${req.get('host')}/api/uploads/${movie.poster}`;
         }
@@ -32,7 +28,6 @@ const getMovieById = async (req, res) => {
             movie.trailer = `${req.protocol}://${req.get('host')}/api/uploads/${movie.trailer}`;
         }
 
-        // Trả về chi tiết phim
         res.status(200).json(movie);
     } catch (error) {
         console.error('Error while fetching movie details:', error);
@@ -40,7 +35,6 @@ const getMovieById = async (req, res) => {
     }
 };
 
-// 1.3. Lấy Danh Sách Lịch Chiếu của Phim
 const getShowtimesByMovieId = async (req, res) => {
     const { id } = req.params;
     try {
@@ -48,42 +42,38 @@ const getShowtimesByMovieId = async (req, res) => {
         if (!movie) {
             return res.status(404).json({ message: 'Movie not found' });
         }
-        res.status(200).json(movie.showtimes); // Giả sử có trường showtimes trong model
+        res.status(200).json(movie.showtimes); 
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// 2.1. Thêm Phim Mới
 const addMovie = async (req, res) => {
     const { title, description, actors, director, trailer, releaseDate, duration, genre, status } = req.body;
 
-    // Lưu đường dẫn poster và image nếu có
     const poster = req.files && req.files.poster ? `uploads/${req.files.poster[0].filename}` : null;
     const image = req.files && req.files.image ? `uploads/${req.files.image[0].filename}` : null;  
     const trailerFile = req.files && req.files.trailer ? `uploads/${req.files.trailer[0].filename}` : null;
 
     try {
-        // Kiểm tra nếu phim đã tồn tại
         const existingMovie = await Movie.findOne({ title });
 
         if (existingMovie) {
             return res.status(400).json({ message: 'Phim đã tồn tại' });
         }
 
-        // Tìm movieId cao nhất và tạo movieId mới
-        const lastMovie = await Movie.findOne().sort({ movieId: -1 });  // Lấy bộ phim có movieId lớn nhất
-        let movieId = 'MV001';  // Mặc định movieId là MV001 nếu không có bộ phim nào
+        const lastMovie = await Movie.findOne().sort({ movieId: -1 }); 
+        let movieId = 'MV001'; 
 
         if (lastMovie) {
             const lastMovieId = lastMovie.movieId;
-            const lastNumber = parseInt(lastMovieId.replace('MV', ''), 10);  // Lấy số sau 'MV'
-            movieId = `MV${String(lastNumber + 1).padStart(3, '0')}`;  // Tăng movieId lên 1
+            const lastNumber = parseInt(lastMovieId.replace('MV', ''), 10);  
+            movieId = `MV${String(lastNumber + 1).padStart(3, '0')}`; 
         }
 
         // Tạo mới bộ phim
         const newMovie = new Movie({
-            movieId,  // Thêm movieId tự động tạo vào đây
+            movieId,  
             title,
             description,
             actors,
@@ -97,10 +87,8 @@ const addMovie = async (req, res) => {
             image,
         });
 
-        // Lưu phim vào cơ sở dữ liệu
         await newMovie.save();
 
-        // Tạo đường dẫn URL cho poster, image, trailer nếu có
         if (newMovie.poster) {
             newMovie.poster = `${req.protocol}://${req.get('host')}/${newMovie.poster}`;
         }
@@ -111,7 +99,6 @@ const addMovie = async (req, res) => {
             newMovie.trailer = `${req.protocol}://${req.get('host')}/${newMovie.trailer}`;
         }
 
-        // Trả về phản hồi thành công
         res.status(201).json({ message: 'Phim mới đã được tạo thành công', movie: newMovie });
     } catch (error) {
         console.error('Error while adding movie:', error);
@@ -122,24 +109,20 @@ const addMovie = async (req, res) => {
 
 
 
-// 2.2. Cập Nhật Thông Tin Phim
 const updateMovie = async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
 
-    // Kiểm tra nếu có tệp mới (poster, image, trailer) hay không
     let poster = req.files && req.files.poster ? `uploads/${req.files.poster[0].filename}` : null;
     let image = req.files && req.files.image ? `uploads/${req.files.image[0].filename}` : null;
     let trailerFile = req.files && req.files.trailer ? `uploads/${req.files.trailer[0].filename}` : null;
 
     try {
-        // Tìm phim theo ID
         const movie = await Movie.findById(id);
         if (!movie) {
             return res.status(404).json({ message: 'Phim không tồn tại' });
         }
 
-        // Cập nhật các thông tin cho phim, nếu không có trong body thì giữ lại giá trị cũ
         movie.title = updateData.title || movie.title;
         movie.description = updateData.description || movie.description;
         movie.actors = updateData.actors || movie.actors;
@@ -149,7 +132,6 @@ const updateMovie = async (req, res) => {
         movie.genre = updateData.genre || movie.genre;
         movie.status = updateData.status || movie.status;
 
-        // Cập nhật đường dẫn file (poster, image, trailer) nếu có tệp mới
         if (poster) {
             movie.poster = poster;
         }
@@ -160,10 +142,8 @@ const updateMovie = async (req, res) => {
             movie.trailer = trailerFile;
         }
 
-        // Lưu lại phim đã được cập nhật
         await movie.save();
 
-        // Tạo đường dẫn URL cho poster, image, trailer nếu có
         if (movie.poster) {
             movie.poster = `${req.protocol}://${req.get('host')}/${movie.poster}`;
         }
@@ -174,7 +154,6 @@ const updateMovie = async (req, res) => {
             movie.trailer = `${req.protocol}://${req.get('host')}/${movie.trailer}`;
         }
 
-        // Trả về phản hồi thành công
         res.status(200).json({ message: 'Cập nhật phim thành công', movie });
     } catch (error) {
         console.error('Lỗi khi cập nhật phim:', error);
@@ -182,7 +161,6 @@ const updateMovie = async (req, res) => {
     }
 };
 
-// 2.3. Xóa Phim
 const deleteMovie = async (req, res) => {
     const { id } = req.params;
     try {
@@ -196,20 +174,18 @@ const deleteMovie = async (req, res) => {
     }
 };
 
-// 1.4. Admin lấy tất cả phim (không phân trang, không giới hạn)
 const getAllMoviesAdmin = async (req, res) => {
     try {
-        const movies = await Movie.find(); // Lấy tất cả phim
+        const movies = await Movie.find(); 
         res.status(200).json({ message: 'Admin lấy danh sách tất cả phim thành công', movies });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// 2.4. Admin xóa tất cả phim
 const deleteAllMovies = async (req, res) => {
     try {
-        await Movie.deleteMany(); // Xóa tất cả các phim trong cơ sở dữ liệu
+        await Movie.deleteMany(); 
         res.status(200).json({ message: 'Tất cả phim đã được xóa thành công' });
     } catch (error) {
         res.status(500).json({ error: error.message });

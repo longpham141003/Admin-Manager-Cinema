@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
-import User from '../../models/user/user.model.js'; // Đảm bảo thêm '.js' khi sử dụng ESM
+import User from '../../models/user/user.model.js'; 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-
-// Đăng ký
 export const register = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
@@ -54,7 +52,6 @@ export const register = async (req, res) => {
     }
 };
 
-// Tạo người dùng (admin)
 export const createUser = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
@@ -104,7 +101,6 @@ export const createUser = async (req, res) => {
     }
 };
 
-// Đăng nhập
 export const login = async (req, res) => {
     const { username, password } = req.body;
 
@@ -129,7 +125,6 @@ export const login = async (req, res) => {
     }
 };
 
-// Lấy thông tin người dùng hiện tại
 export const getCurrentUser = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
@@ -142,7 +137,6 @@ export const getCurrentUser = async (req, res) => {
     }
 };
 
-// Xem tất cả người dùng (admin)
 export const getAllUsers = async (req, res) => {
     try {
         const users = await User.find({}, '-password');
@@ -152,7 +146,6 @@ export const getAllUsers = async (req, res) => {
     }
 };
 
-// Xem chi tiết người dùng theo ID
 export const getUserById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -166,7 +159,6 @@ export const getUserById = async (req, res) => {
     }
 };
 
-// Xóa người dùng (admin)
 export const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
@@ -180,7 +172,6 @@ export const deleteUser = async (req, res) => {
     }
 };
 
-// Cập nhật thông tin người dùng
 export const updateUserInfo = async (req, res) => {
     const userId = req.user.role === 'admin' ? req.params.id : req.user._id;
     const { hoTen, email, soDienThoai } = req.body;

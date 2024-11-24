@@ -1,10 +1,9 @@
 import multer from 'multer';
 import path from 'path';
 
-// Cấu hình nơi lưu trữ file và cách đặt tên file
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Đảm bảo thư mục uploads tồn tại
+    cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);

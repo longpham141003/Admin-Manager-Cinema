@@ -11,26 +11,27 @@ import {
 } from '../../controllers/movie/movie.controller.js';
 import { auth, authorize } from '../../middlewares/auth.js';
 import upload from '../../middlewares/upload.js';
-
+import { validate } from '../../middlewares/validate.js';  
+import { addMovieSchema, updateMovieSchema } from '../../validations/movieValidation.js'; 
 const router = express.Router();
 
 router.post('/', auth, authorize('admin'), upload.fields([
     { name: 'image', maxCount: 1 },  
     { name: 'poster', maxCount: 1 }, 
     { name: 'trailer', maxCount: 1 }
-]), addMovie);
+]),validate(addMovieSchema),  addMovie);
 
 router.put('/:id', auth, authorize('admin'), upload.fields([
     { name: 'image', maxCount: 1 },  
     { name: 'poster', maxCount: 1 }, 
     { name: 'trailer', maxCount: 1 }
-]), updateMovie);
+]),validate(updateMovieSchema),  updateMovie);
 
-router.get('/', getAllMovies); // Lấy danh sách phim
-router.get('/:id', getMovieById); // Lấy chi tiết phim
-router.get('/:id/showtimes', getShowtimesByMovieId); // Lấy danh sách lịch chiếu
-router.delete('/delete-all', auth, authorize('admin'), deleteAllMovies); // Admin xóa tất cả các phim
-router.delete('/:id', auth, authorize('admin'), deleteMovie); // Xóa phim (admin)
-router.get('/all', auth, authorize('admin'), getAllMoviesAdmin); // Admin lấy tất cả các phim
+router.get('/', getAllMovies); 
+router.get('/:id', getMovieById); 
+router.get('/:id/showtimes', getShowtimesByMovieId); 
+router.delete('/delete-all', auth, authorize('admin'), deleteAllMovies); 
+router.delete('/:id', auth, authorize('admin'), deleteMovie); 
+router.get('/all', auth, authorize('admin'), getAllMoviesAdmin); 
 
 export default router;

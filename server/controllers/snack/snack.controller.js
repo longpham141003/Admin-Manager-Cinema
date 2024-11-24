@@ -1,8 +1,6 @@
-// controllers/snack/snack.controller.js
 import Snack from '../../models/snack/snack.model.js';
 import fs from 'fs';
 
-// 1. Lấy danh sách sản phẩm
 const getAllSnacks = async (req, res) => {
     try {
         const snacks = await Snack.find();
@@ -12,16 +10,14 @@ const getAllSnacks = async (req, res) => {
     }
 };
 
-// 2. Lấy chi tiết sản phẩm theo ID
 const getSnackById = async (req, res) => {
     const { id } = req.params;
     try {
-        const snack = await Snack.findById(id); // Tìm theo _id
+        const snack = await Snack.findById(id);
         if (!snack) {
             return res.status(404).json({ message: 'Snack not found' });
         }
 
-        // Tạo đường dẫn URL cho ảnh nếu có
         if (snack.image) {
             snack.image = `${req.protocol}://${req.get('host')}/${snack.image}`;
         }
@@ -32,13 +28,10 @@ const getSnackById = async (req, res) => {
     }
 };
 
-// 3. Thêm sản phẩm mới (Chỉ admin)
 const addSnack = async (req, res) => {
     const { name, price, quantity } = req.body;
-    const image = req.file ? `uploads/${req.file.filename}` : null;  // Lưu đường dẫn ảnh vào database
-
+    const image = req.file ? `uploads/${req.file.filename}` : null; 
     try {
-        // Kiểm tra nếu sản phẩm đã tồn tại
         const existingSnack = await Snack.findOne({ name });
 
         if (existingSnack) {
@@ -47,17 +40,14 @@ const addSnack = async (req, res) => {
             return res.status(200).json({ message: 'Sản phẩm đã tồn tại, đã tăng số lượng tồn kho.', snack: existingSnack });
         }
 
-        // Tìm mã sản phẩm cao nhất và tạo mã mới
-        const lastSnack = await Snack.findOne().sort({ productId: -1 });  // Lấy sản phẩm có mã lớn nhất
-        let productId = 'SP001';  // Mặc định mã sản phẩm là SP001 nếu không có sản phẩm nào
-
+        const lastSnack = await Snack.findOne().sort({ productId: -1 });  
+        let productId = 'SP001'; 
         if (lastSnack) {
             const lastProductId = lastSnack.productId;
-            const lastNumber = parseInt(lastProductId.replace('SP', ''), 10);  // Lấy số sau 'SP'
-            productId = `SP${String(lastNumber + 1).padStart(3, '0')}`;  // Tăng mã sản phẩm lên 1
+            const lastNumber = parseInt(lastProductId.replace('SP', ''), 10); 
+            productId = `SP${String(lastNumber + 1).padStart(3, '0')}`; 
         }
 
-        // Tạo sản phẩm mới
         const newSnack = new Snack({
             productId,
             name,
@@ -66,15 +56,12 @@ const addSnack = async (req, res) => {
             quantity
         });
 
-        // Lưu sản phẩm mới vào DB
         await newSnack.save();
 
-        // Tạo đường dẫn URL cho ảnh
         if (newSnack.image) {
             newSnack.image = `${req.protocol}://${req.get('host')}/${newSnack.image}`;
         }
 
-        // Trả về phản hồi thành công
         res.status(201).json({ message: 'Sản phẩm mới đã được tạo thành công', snack: newSnack });
     } catch (error) {
         console.error('Error while adding snack:', error);
@@ -83,11 +70,10 @@ const addSnack = async (req, res) => {
 };
 
 
-// 4. Cập nhật sản phẩm (Chỉ admin)
 const updateSnack = async (req, res) => {
     const { id } = req.params;
-    const { name, price, quantity } = req.body;  // Các trường từ req.body
-    const image = req.file ? `uploads/${req.file.filename}` : null;  // Nếu có ảnh mới, lấy đường dẫn ảnh mới
+    const { name, price, quantity } = req.body;  
+    const image = req.file ? `uploads/${req.file.filename}` : null;  
 
     try {
         const snack = await Snack.findById(id);
@@ -95,20 +81,16 @@ const updateSnack = async (req, res) => {
             return res.status(404).json({ message: 'Snack not found' });
         }
 
-        // Cập nhật thông tin sản phẩm từ req.body
         snack.name = name || snack.name;
         snack.price = price || snack.price;
         snack.quantity = quantity || snack.quantity;
         
-        // Nếu có ảnh mới, cập nhật ảnh
         if (image) {
             snack.image = image;
         }
 
-        // Lưu sản phẩm đã cập nhật
         await snack.save();
 
-        // Tạo đường dẫn URL cho ảnh nếu có
         if (snack.image) {
             snack.image = `${req.protocol}://${req.get('host')}/${snack.image}`;
         }
@@ -120,7 +102,6 @@ const updateSnack = async (req, res) => {
     }
 };
 
-// 5. Xóa sản phẩm (Chỉ admin)
 const deleteSnack = async (req, res) => {
     const { id } = req.params;
     try {
@@ -134,7 +115,6 @@ const deleteSnack = async (req, res) => {
     }
 };
 
-// Export các controller
 export {
     getAllSnacks,
     getSnackById,
