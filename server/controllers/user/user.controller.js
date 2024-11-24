@@ -3,26 +3,20 @@ import User from '../../models/user/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+const generateUserCode = async () => {
+    try {
+        const userCount = await User.countDocuments();
+        const userCode = `TK${(userCount + 1).toString().padStart(4, '0')}`;
+        return userCode;
+    } catch (error) {
+        throw new Error('Lỗi khi tạo mã người dùng: ' + error.message);
+    }
+};
+
 export const register = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
-    const generateUserCode = async () => {
-        let userCode;
-        let count = 1;
-    
-        while (count <= 9999) { 
-            userCode = `TK${count.toString().padStart(4, '0')}`;
-            const existingUser = await User.findOne({ userCode });
-    
-            if (!existingUser) {
-                return userCode;
-            }
-    
-            count++;
-        }
-    
-        throw new Error('Không thể tạo mã người dùng mới');
-    };
+    const userCode = await generateUserCode();
     
     try {
         const existingUser = await User.findOne({ username });
@@ -54,25 +48,7 @@ export const register = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
-
-    const generateUserCode = async () => {
-        let userCode;
-        let count = 1;
-    
-        while (count <= 9999) {
-            userCode = `TK${count.toString().padStart(4, '0')}`;
-            const existingUser = await User.findOne({ userCode });
-    
-            if (!existingUser) {
-                return userCode;
-            }
-    
-            count++;
-        }
-    
-        throw new Error('Không thể tạo mã người dùng mới');
-    };
-
+    const userCode = await generateUserCode();
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {

@@ -104,10 +104,6 @@ const addMovie = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-
-
-
 const updateMovie = async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;

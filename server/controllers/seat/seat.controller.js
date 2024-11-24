@@ -1,5 +1,6 @@
 import Seat from '../../models/seat/seat.model.js';
 import SeatType from '../../models/seat/seatType.model.js';
+import seatConfig from './seatConfig.js';
 
 const createSeats = async (req, res) => {
     try {
@@ -9,8 +10,8 @@ const createSeats = async (req, res) => {
         
         const seats = []; 
 
-        if (seatTypes.length < 3) {
-            return res.status(400).json({ error: 'Cần có ít nhất 3 loại ghế để tạo.' });
+        if (seatTypes.length < seatConfig.minSeatTypes) {
+            return res.status(400).json({ error: `Cần có ít nhất ${seatConfig.minSeatTypes} loại ghế để tạo.` });
         }
 
         for (let row = 1; row <= totalRows; row++) {
@@ -19,30 +20,30 @@ const createSeats = async (req, res) => {
 
                 let seatTypeId;
 
-                if ((row === 3 && column >= 3 && column <= 8) || (row === 4 && column >= 3 && column <= 8)) {
-                    seatTypeId = seatTypes[1]._id;
+                if (seatConfig.vipSeats.rows.includes(row) && column >= seatConfig.vipSeats.columns[0] && column <= seatConfig.vipSeats.columns[1]) {
+                    seatTypeId = seatTypes[seatConfig.vipSeatType]._id;
                 } 
                 else if (row === totalRows) {
-                    if (column % 2 === 1 && column <= 10) {
-                        seatTypeId = seatTypes[2]._id;
+                    if (column % 2 === 1 && column <= seatConfig.lastRowSeat.maxColumn) {
+                        seatTypeId = seatTypes[seatConfig.lastRowSeatType]._id;
                     } else {
-                        continue; 
+                        continue;
                     }
                 } 
                 else {
-                    seatTypeId = seatTypes[0]._id; 
+                    seatTypeId = seatTypes[seatConfig.defaultSeatType]._id;
                 }
 
                 seats.push({ seatNumber, seatType: seatTypeId, status: 'available' });
             }
         }
-
         await Seat.insertMany(seats);
         res.status(201).json({ message: 'Tạo ghế thành công', seats });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 const updateSeatStatus = async (req, res) => {
     const { id } = req.params;
