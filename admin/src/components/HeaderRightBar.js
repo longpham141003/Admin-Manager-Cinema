@@ -5,10 +5,8 @@ const HeaderRightBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Xóa token khỏi localStorage
     localStorage.removeItem('token');
 
-    // Chuyển hướng người dùng về trang đăng nhập
     navigate('/admin/adminlogin');
   };
 

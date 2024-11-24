@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// URL cơ bản của API lấy từ biến môi trường
 const host = process.env.REACT_APP_API_HOST;
 
-// Hàm gọi API
 const callAPI = async (api) => {
   try {
     const response = await axios.get(api);

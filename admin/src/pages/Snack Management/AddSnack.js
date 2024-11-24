@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAddSnack } from '../../hooks/snack/useAddSnack';  // Import hook đã tạo
+import { useAddSnack } from '../../hooks/snack/useAddSnack';
 import "./snackmanagement.css";
 import Button from '../../components/button';  // Nếu có component Button
 
@@ -20,10 +20,10 @@ const AddSnack = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const success = await addSnack();  // Gọi hàm thêm snack
+        const success = await addSnack();  
 
         if (success) {
-            navigate('/admin/snackmanagement');  // Điều hướng đến trang quản lý snack sau khi thêm thành công
+            navigate('/admin/snackmanagement');
         }
     };
 

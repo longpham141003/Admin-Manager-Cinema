@@ -11,6 +11,7 @@ import { createSeatTypeSchema, updateSeatTypeSchema } from '../../validations/se
 const router = express.Router();
 
 router.post('/', auth, authorize('admin'), validate(createSeatTypeSchema), createSeatTypes);
+router.post('/', auth, authorize('admin'), createSeatTypes);
 router.get('/', auth, authorize('admin'), getAllSeatTypes);
 router.delete('/', auth, authorize('admin'), deleteAllSeatTypes);
 

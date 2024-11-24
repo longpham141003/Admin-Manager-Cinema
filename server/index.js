@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoute from './routes/user/user.routes.js';
 import movieRoute from './routes/movie/movie.routes.js';
-import theaterRoute from './routes/theater/theater.routes.js'; // Thêm dòng này
+import theaterRoute from './routes/theater/theater.routes.js'; 
 import seatRoute from './routes/seat/seat.routes.js';
 import bookingRoute from './routes/ticket/booking.routes.js';
 import seatTypeRoutes from './routes/seat/seatType.routes.js';

@@ -14,6 +14,7 @@ const router = express.Router();
 
 router.post('/', auth, authorize('admin'), validate(createTheaterSchema), addTheater);
 router.put('/:id', auth, authorize('admin'), validate(updateTheaterSchema), updateTheater);
+router.delete('/all', auth, authorize('admin'), deleteAllTheaters); 
 router.get('/', getTheaters);
 router.get('/:id', getTheaterById);
 router.delete('/:id', auth, authorize('admin'), deleteTheater);

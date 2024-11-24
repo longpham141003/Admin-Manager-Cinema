@@ -20,5 +20,8 @@ router.delete('/:id', auth, authorize('admin'), deleteUser);
 router.put('/update-info', auth, validate(updateUserInfoSchema), updateUserInfo); 
 router.put('/:id', auth, authorize('admin'), validate(updateUserInfoSchema), updateUserInfo);
 router.post('/create', auth, authorize('admin'), validate(createUserSchema), createUser);
+router.put('/update-info', auth, updateUserInfo); 
+router.put('/:id', auth, authorize('admin'), updateUserInfo);
+router.post('/create', auth, authorize('admin'), createUser);
 
 export default router;

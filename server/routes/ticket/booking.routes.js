@@ -8,6 +8,7 @@ import * as bookingController from '../../controllers/ticket/booking.controller.
 const router = express.Router();
 
 router.post('/', auth, validate(bookingSchema), bookingController.createBooking);
+router.post('/', auth, bookingController.createBooking);
 router.get('/', auth, bookingController.getAllBookingsWithDetails);
 router.get('/:id', auth, bookingController.getBookingById);
 router.put('/:id', auth, bookingController.updateBookingStatus);

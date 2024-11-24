@@ -5,7 +5,6 @@ const createBooking = async (req, res) => {
     try {
         const { seatIds, showTimeId } = req.body;
 
-        // Lấy thông tin ghế
         const seats = await Seat.find({ _id: { $in: seatIds } }).populate('seatType');
 
         if (!seats || seats.length === 0) {
@@ -13,7 +12,7 @@ const createBooking = async (req, res) => {
         }
 
         const totalPrice = seats.reduce((total, seat) => {
-            return total + (seat.seatType.price || 0); // Lấy giá từ loại ghế
+            return total + (seat.seatType.price || 0); 
         }, 0); 
 
         const newBooking = new Booking({
@@ -26,6 +25,10 @@ const createBooking = async (req, res) => {
 
         await newBooking.save();
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 80f873b88fe00ac6b274dd998ead1ef48d1aa1f5
         res.status(201).json({
             message: 'Đặt chỗ thành công',
             booking: {
@@ -45,7 +48,11 @@ const getAllBookingsWithDetails = async (req, res) => {
                 path: 'seatId',
                 select: 'seatNumber seatType status', 
                 populate: {
+<<<<<<< HEAD
                     path: 'seatType',
+=======
+                    path: 'seatType', 
+>>>>>>> 80f873b88fe00ac6b274dd998ead1ef48d1aa1f5
                     select: 'price' 
                 }
             })
@@ -56,8 +63,13 @@ const getAllBookingsWithDetails = async (req, res) => {
                 ...booking.toObject(),
                 seatId: booking.seatId.map(seat => ({
                     ...seat.toObject(),
+<<<<<<< HEAD
                     status: 'booked', 
                     price: seat.seatType.price
+=======
+                    status: 'booked',
+                    price: seat.seatType.price 
+>>>>>>> 80f873b88fe00ac6b274dd998ead1ef48d1aa1f5
                 })),
                 totalPrice: booking.totalPrice 
             };

@@ -41,7 +41,6 @@ const EditAccount = () => {
         }
     };
 
-    // Hàm xử lý khi form được submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         const success = await editUser(); 
@@ -50,7 +49,6 @@ const EditAccount = () => {
         }
     };
 
-    // Hiển thị thông báo nếu đang tải hoặc có lỗi
     if (loading) return <p>Đang tải thông tin người dùng...</p>;
     if (errorMessage) return <p className="error-message">{errorMessage}</p>;
 

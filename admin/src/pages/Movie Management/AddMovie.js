@@ -1,5 +1,5 @@
 import React from 'react';
-import "./moviemanagement.css"; // Sử dụng CSS giống như trong MovieManagement
+import "./moviemanagement.css";
 import Button from "../../components/button";
 import { useNavigate } from 'react-router-dom';
 import { useAddMovie } from '../../hooks/movie/useAddMovie';

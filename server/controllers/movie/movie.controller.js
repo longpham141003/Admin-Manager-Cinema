@@ -63,15 +63,14 @@ const addMovie = async (req, res) => {
         }
 
         const lastMovie = await Movie.findOne().sort({ movieId: -1 }); 
-        let movieId = 'MV001'; 
+        let movieId = 'MV001';  
 
         if (lastMovie) {
             const lastMovieId = lastMovie.movieId;
-            const lastNumber = parseInt(lastMovieId.replace('MV', ''), 10);  
-            movieId = `MV${String(lastNumber + 1).padStart(3, '0')}`; 
+            const lastNumber = parseInt(lastMovieId.replace('MV', ''), 10);  // Lấy số sau 'MV'
+            movieId = `MV${String(lastNumber + 1).padStart(3, '0')}`;  // Tăng movieId lên 1
         }
 
-        // Tạo mới bộ phim
         const newMovie = new Movie({
             movieId,  
             title,

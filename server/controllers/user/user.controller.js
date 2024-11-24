@@ -10,7 +10,7 @@ export const register = async (req, res) => {
         let userCode;
         let count = 1;
     
-        while (count <= 9999) { // Giới hạn để tránh vòng lặp vô hạn
+        while (count <= 9999) { 
             userCode = `TK${count.toString().padStart(4, '0')}`;
             const existingUser = await User.findOne({ userCode });
     

@@ -33,5 +33,11 @@ router.get('/:id/showtimes', getShowtimesByMovieId);
 router.delete('/delete-all', auth, authorize('admin'), deleteAllMovies); 
 router.delete('/:id', auth, authorize('admin'), deleteMovie); 
 router.get('/all', auth, authorize('admin'), getAllMoviesAdmin); 
+router.get('/', getAllMovies);
+router.get('/:id', getMovieById);
+router.get('/:id/showtimes', getShowtimesByMovieId);
+router.delete('/delete-all', auth, authorize('admin'), deleteAllMovies);
+router.delete('/:id', auth, authorize('admin'), deleteMovie);
+router.get('/all', auth, authorize('admin'), getAllMoviesAdmin);
 
 export default router;

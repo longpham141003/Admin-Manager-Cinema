@@ -7,7 +7,7 @@ const LeftBar = () => {
     <div className="left-bar">
       <div className="user-info">
         <img src="https://via.placeholder.com/80" alt="User Avatar" />
-        <h4>{userInfo ? userInfo.hoTen : 'Phạm Quang Long'}</h4> {/* Hiển thị tên người dùng */}
+        <h4>{userInfo ? userInfo.hoTen : 'Phạm Quang Long'}</h4>
         <p>Chào mừng bạn trở lại</p>
       </div>
       <NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>

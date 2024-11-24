@@ -14,6 +14,8 @@ const router = express.Router();
 
 router.post('/create', auth, authorize('admin'), validate(createSeatSchema), createSeats);
 router.put('/:seatId', auth, authorize('admin'), validate(updateSeatSchema), updateSeatStatus);
+router.post('/create', auth, authorize('admin'), createSeats);
+router.put('/:seatId', auth, authorize('admin'), updateSeatStatus);
 router.get('/', auth, getAllSeats);
 router.get('/:seatId', auth, getSeatById);
 router.delete('/deleteAll', auth, authorize('admin'), deleteAllSeats);
