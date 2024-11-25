@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-
+//xóa mấy dòng này
 <<<<<<< HEAD
 =======
 

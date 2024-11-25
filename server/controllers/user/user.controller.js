@@ -17,6 +17,7 @@ const generateUserCode = async () => {
 export const register = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
+    //xóa dòng này vì không dùng đến, vì đã được khai báo lại bên trong khối lệnh bên dưới
     const userCode = await generateUserCode();
     
     try {

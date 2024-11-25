@@ -1,4 +1,5 @@
 import Showtime from '../../models/showtime/showtime.model.js';
+//xóa 2 dòng sau vì không dùng đến
 import Movie from '../../models/movie/movie.model.js'; 
 import Theater from '../../models/theater/theater.model.js';
 

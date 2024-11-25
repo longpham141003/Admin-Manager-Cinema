@@ -10,10 +10,13 @@ import seatTypeRoutes from './routes/seat/seatType.routes.js';
 import showtimeRoute from './routes/showtime/showtime.routes.js';
 import snackRoute from './routes/snack/snack.routes.js';
 
+//đưa mấy dòng này vào file config.js
 import dotenv from 'dotenv';
 dotenv.config(); 
 const mongoURL = process.env.MONGO_URL;
 const port = process.env.PORT;
+
+
 const app = express();
 
 app.use(cors());
