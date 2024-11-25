@@ -10,7 +10,10 @@ import seatTypeRoutes from './routes/seat/seatType.routes.js';
 import showtimeRoute from './routes/showtime/showtime.routes.js';
 import snackRoute from './routes/snack/snack.routes.js';
 
-
+import dotenv from 'dotenv';
+dotenv.config(); 
+const mongoURL = process.env.MONGO_URL;
+const port = process.env.PORT;
 const app = express();
 
 app.use(cors());
@@ -28,11 +31,11 @@ app.use('/api/bookings', bookingRoute);
 app.use('/api/snacks', snackRoute); 
 
 // Kết nối MongoDB
-mongoose.connect('mongodb+srv://longpham141003:Q.long2003@cluster0.wnvq1lm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(mongoURL)
     .then(() => {
         console.log('Đã kết nối tới Database');
-        app.listen(3000, () => {
-            console.log('Server is listening on port 3000');
+        app.listen(port, () => {
+            console.log(`Server is listening on port ${port}`);
         });
     })
     .catch((err) => {
