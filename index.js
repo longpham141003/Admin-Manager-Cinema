@@ -9,11 +9,9 @@ import bookingRoute from './routes/ticket/booking.routes.js';
 import seatTypeRoutes from './routes/seat/seatType.routes.js';
 import showtimeRoute from './routes/showtime/showtime.routes.js';
 import snackRoute from './routes/snack/snack.routes.js';
+import config from './config.js';
 
-import dotenv from 'dotenv';
-dotenv.config(); 
-const mongoURL = process.env.MONGO_URL;
-const port = process.env.PORT;
+const { mongoURL, port } = config;
 const app = express();
 
 app.use(cors());
@@ -28,9 +26,8 @@ app.use('/api/showtimes', showtimeRoute);
 app.use('/api/seats', seatRoute);
 app.use('/api/seattypes', seatTypeRoutes);
 app.use('/api/bookings', bookingRoute);
-app.use('/api/snacks', snackRoute); 
+app.use('/api/snacks', snackRoute);
 
-// Kết nối MongoDB
 mongoose.connect(mongoURL)
     .then(() => {
         console.log('Đã kết nối tới Database');
