@@ -17,8 +17,6 @@ const generateUserCode = async () => {
 export const register = async (req, res) => {
     const { hoTen, email, soDienThoai, username, password, role } = req.body;
 
-    const userCode = await generateUserCode();
-    
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {

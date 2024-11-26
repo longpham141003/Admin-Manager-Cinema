@@ -1,5 +1,4 @@
 import Snack from '../../models/snack/snack.model.js';
-import fs from 'fs';
 
 const getAllSnacks = async (req, res) => {
     try {

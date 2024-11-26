@@ -1,6 +1,4 @@
 import Showtime from '../../models/showtime/showtime.model.js';
-import Movie from '../../models/movie/movie.model.js'; 
-import Theater from '../../models/theater/theater.model.js';
 
 const getShowtimesByTheater = async (req, res) => {
     const { id } = req.params;
